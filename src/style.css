@@ -10,3 +10,12 @@ body {
   font-family: "JetBrains Mono", monospace;
   background: #f4f4f4;
 }
+
+.post::before {
+  content: "> ";
+}
+.post {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

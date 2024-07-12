@@ -8,8 +8,9 @@ $(document).ready(function () {
       posts.forEach(function (post) {
         var postHtml = `
                     <div class="post">
+                    <p>${post.date}</p>
                         <h2><a href="post.html?id=${post.id}">${post.title}</a></h2>
-                        <p>${post.content}</p>
+                        
                     </div>
                 `;
         postsContainer.append(postHtml);
