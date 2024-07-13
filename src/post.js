@@ -19,6 +19,7 @@ $(document).ready(function () {
 
     // Display the post
     if (post) {
+      $("title").text("Blog - " + post.title);
       $("#post-title").text(post.title);
       $("#post-content").html(`<p>${post.content}</p>`);
     } else {
