@@ -4,7 +4,7 @@
     "date": "2024-07-14",
     "title": "Introducing the Sakura CSS Framework to My Blog",
     "author": "Bagus Perwira",
-    "tags": ["CSS Framework", "Web Design", "Sakura", "Minimalist"],
+    "tags": ["CSS Framework", "Sakura", "Minimalist"],
     "summary": "Discover why I chose the Sakura CSS framework for my blog, highlighting its lightweight nature, class-free styling, and minimalist design.",
     "content": "<h3>Why I Chose the Sakura Framework</h3><p>I've previously used popular frameworks like <strong>Tailwind</strong> and <strong>Bootstrap</strong>, but I often found myself spending a lot of time adding classes to my code. Let's be honest, I was just too lazy to add all those classes! After some research, I discovered the <strong>Sakura framework</strong>.</p><h3>Benefits of Sakura</h3><ul><li><strong>Lightweight</strong>: Sakura is incredibly lightweight, which ensures that my blog loads quickly and performs well.</li><li><strong>No Need for Classes</strong>: One of the standout features of Sakura is that it doesn't require adding classes to your HTML elements. You simply include the CSS file, and your content is styled automatically.</li><li><strong>Minimalist Design</strong>: The framework provides a clean and minimalist aesthetic, which perfectly aligns with the vision I have for my website.</li></ul><p>If you're looking to create a minimalist website with minimal effort, I highly recommend giving Sakura a try. It's a fantastic option for those who prefer a simple, drag-and-drop approach to web design.</p><img src='https://www.meme-arsenal.com/memes/38f87777adb891553167fe51d72fa365.jpg' alt='Meme image'/>"
   },
