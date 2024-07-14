@@ -1,20 +1,29 @@
 [
   {
     "id": "introducing-the-sakura-css-framework-to-my-blog",
-    "date": "2024-7-14",
+    "date": "2024-07-14",
     "title": "Introducing the Sakura CSS Framework to My Blog",
-    "content": "<h3>Why I Chose the Sakura Framework</h3><p>I've previously used popular frameworks like <strong>Tailwind</strong> and <strong>Bootstrap</strong>, but I often found myself spending a lot of time adding classes to my code. Let's be honest, I was just too lazy to add all those classes! After some research, I discovered the <strong>Sakura framework</strong>.</p><h3>Benefits of Sakura</h3><ul><li><strong>Lightweight</strong>: Sakura is incredibly lightweight, which ensures that my blog loads quickly and performs well.</li><li><strong>No Need for Classes</strong>: One of the standout features of Sakura is that it doesn't require adding classes to your HTML elements. You simply include the CSS file, and your content is styled automatically.</li><li><strong>Minimalist Design</strong>: The framework provides a clean and minimalist aesthetic, which perfectly aligns with the vision I have for my website.</li></ul><p>If you're looking to create a minimalist website with minimal effort, I highly recommend giving Sakura a try. It's a fantastic option for those who prefer a simple, drag-and-drop approach to web design.</p><img src='https://www.meme-arsenal.com/memes/38f87777adb891553167fe51d72fa365.jpg'/>"
+    "author": "Bagus Perwira",
+    "tags": ["CSS Framework", "Web Design", "Sakura", "Minimalist"],
+    "summary": "Discover why I chose the Sakura CSS framework for my blog, highlighting its lightweight nature, class-free styling, and minimalist design.",
+    "content": "<h3>Why I Chose the Sakura Framework</h3><p>I've previously used popular frameworks like <strong>Tailwind</strong> and <strong>Bootstrap</strong>, but I often found myself spending a lot of time adding classes to my code. Let's be honest, I was just too lazy to add all those classes! After some research, I discovered the <strong>Sakura framework</strong>.</p><h3>Benefits of Sakura</h3><ul><li><strong>Lightweight</strong>: Sakura is incredibly lightweight, which ensures that my blog loads quickly and performs well.</li><li><strong>No Need for Classes</strong>: One of the standout features of Sakura is that it doesn't require adding classes to your HTML elements. You simply include the CSS file, and your content is styled automatically.</li><li><strong>Minimalist Design</strong>: The framework provides a clean and minimalist aesthetic, which perfectly aligns with the vision I have for my website.</li></ul><p>If you're looking to create a minimalist website with minimal effort, I highly recommend giving Sakura a try. It's a fantastic option for those who prefer a simple, drag-and-drop approach to web design.</p><img src='https://www.meme-arsenal.com/memes/38f87777adb891553167fe51d72fa365.jpg' alt='Meme image'/>"
   },
   {
     "id": "why-i-make-a-blog-post",
-    "date": "2024-7-13",
+    "date": "2024-07-13",
     "title": "Why I Make a Blog?",
+    "author": "Bagus Perwira",
+    "tags": ["Blogging", "Introduction"],
+    "summary": "An introduction to my blog, sharing the motivations behind starting it and inviting readers to learn more about my projects.",
     "content": "<p>Hi everyone! <br>I'm here to share a little bit about my project in the form of a blog post. <br>If anyone would like to know more about what I do when I make a program, <br>I'd love for you to check out my blog.</p>"
   },
   {
     "id": "hello-world",
-    "date": "2024-7-12",
+    "date": "2024-07-12",
     "title": "Hello, World",
-    "content": "<p>Hi, This is my first blog post!</p>"
+    "author": "Bagus Perwira",
+    "tags": ["Introduction", "First Post"],
+    "summary": "My very first blog post, marking the start of my blogging journey.",
+    "content": "<p>Hi, This is my first blog post!</p><img src='./src/img/blur.jpg'/>"
   }
 ]

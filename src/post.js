@@ -19,9 +19,21 @@ $(document).ready(function () {
 
     // Display the post
     if (post) {
+      // Update the document title
       $("title").text("Blog - " + post.title);
+
+      // Add meta tags
+      $("head").append(
+        '<meta name="description" content="' + post.summary + '">'
+      );
+      $("head").append('<meta name="author" content="' + post.author + '">');
+      $("head").append(
+        '<meta name="keywords" content="' + post.tags.join(", ") + '">'
+      );
+
+      // Populate the post content
       $("#post-title").text(post.title);
-      $("#post-content").html(`<div>${post.content}</div>`);
+      $("#post-content").html(post.content);
     } else {
       $("#post-title").text("Post not found");
       $("#post-content").html(
