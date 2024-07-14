@@ -4,7 +4,7 @@ $(document).ready(function () {
     // Function to get URL parameters
     function getUrlParameter(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+      var regex = new RegExp("[\\?&]([^&#]*)");
       var results = regex.exec(location.search);
       return results === null
         ? ""
@@ -21,7 +21,7 @@ $(document).ready(function () {
     if (post) {
       $("title").text("Blog - " + post.title);
       $("#post-title").text(post.title);
-      $("#post-content").html(`<p>${post.content}</p>`);
+      $("#post-content").html(`<div>${post.content}</div>`);
     } else {
       $("#post-title").text("Post not found");
       $("#post-content").html(

@@ -8,8 +8,8 @@ $(document).ready(function () {
       posts.forEach(function (post) {
         var postHtml = `
                     <div class="post">
+                    <h2><a href="post.html?${post.id}">${post.title}</a></h2>
                     <p>${post.date}</p>
-                        <h2><a href="post.html?id=${post.id}">${post.title}</a></h2>
                         
                     </div>
                 `;
