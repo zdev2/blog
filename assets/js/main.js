@@ -24,9 +24,9 @@ async function loadPosts() {
 
 // Filter posts by tag
 function filterPostsByTag(posts, tagParam) {
-  const tags = tagParam.split(",").map((tag) => tag.trim()); // Split tags and trim whitespace
+  const tags = tagParam.split(",").map((tag) => tag.trim().toLowerCase()); // Split tags and convert to lowercase
   return posts.filter((post) =>
-    tags.some((tag) => post.data.tag.includes(tag))
+    tags.some((tag) => (post.data.tag || "").toLowerCase().includes(tag))
   );
 }
 
@@ -34,20 +34,26 @@ function filterPostsByTag(posts, tagParam) {
 async function fetchAllPostsMetadata() {
   const posts = [];
   const postFiles = ["hello-world.md", "golang-react-url-shortener.md"]; // Add all your post filenames here
+  const basePath = window.location.pathname.includes("/blog") ? "/blog" : "";
 
   for (const file of postFiles) {
-    const response = await fetch(`/posts/${file}`);
-    const text = await response.text();
-    const { content, data } = parseFrontMatter(text); // Use custom front matter parser
-    data.id = file.split(".")[0]; // Generate a simple ID from the filename
-    posts.push({ content, data }); // Store both content and metadata
+    try {
+      const response = await fetch(`${basePath}/posts/${file}`);
+      if (!response.ok) throw new Error(`Failed to fetch ${file}`);
+      const text = await response.text();
+      const { content, data } = parseFrontMatter(text); // Use custom front matter parser
+      data.id = file.split(".")[0]; // Generate a simple ID from the filename
+      posts.push({ content, data }); // Store both content and metadata
+    } catch (error) {
+      console.error("Error fetching post file:", error);
+    }
   }
   return posts;
 }
 
 // Parse front matter using regex
 function parseFrontMatter(markdown) {
-  const match = markdown.match(/---\s*([\s\S]*?)\s*---/); // Updated regex to capture front matter more reliably
+  const match = markdown.match(/---\s*([\s\S]*?)\s*---/); // Capture front matter reliably
   const metadata = {};
 
   if (match) {
@@ -58,7 +64,6 @@ function parseFrontMatter(markdown) {
     });
     // Remove the front matter from the content
     const content = markdown.replace(/---[\s\S]*?---/, "").trim();
-    // console.log("Parsed Metadata:", metadata); // Debug log to check parsed metadata
     return { content, data: metadata };
   }
 
@@ -85,17 +90,24 @@ function displayPostsList(posts, container) {
 
 // Load individual post content
 async function loadPostContent(postId) {
-  const response = await fetch(`/posts/${postId}.md`);
-  const text = await response.text();
-  const { content, data } = parseFrontMatter(text); // Parse metadata and content
-  const md = window.markdownit();
+  const basePath = window.location.pathname.includes("/blog") ? "/blog" : "";
+  try {
+    const response = await fetch(`${basePath}/posts/${postId}.md`);
+    if (!response.ok) throw new Error(`Failed to load post ${postId}`);
+    const text = await response.text();
+    const { content, data } = parseFrontMatter(text); // Parse metadata and content
+    const md = window.markdownit();
 
-  // Ensure the metadata is correctly accessed and displayed
-  return `
-        <h1>${data.title || "Untitled"}</h1>
-        <p>${data.date || "No date provided"}</p>
-        <div>${md.render(content)}</div>
-    `;
+    // Ensure the metadata is correctly accessed and displayed
+    return `
+          <h1>${data.title || "Untitled"}</h1>
+          <p>${data.date || "No date provided"}</p>
+          <div>${md.render(content)}</div>
+      `;
+  } catch (error) {
+    console.error("Error loading post content:", error);
+    return `<p>Failed to load post content.</p>`;
+  }
 }
 
 // Initialize on document load
