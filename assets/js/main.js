@@ -40,7 +40,9 @@ async function fetchAllPostsMetadata() {
 
   for (const file of postFiles) {
     try {
-      const response = await fetch(`${basePath}/posts/${file}`);
+      const response = await fetch(
+        `https://raw.githubusercontent.com/zdev2/blog/main/posts/${file}`
+      );
       if (!response.ok) throw new Error(`Failed to fetch ${file}`);
       const text = await response.text();
       const { content, data } = parseFrontMatter(text); // Use custom front matter parser
