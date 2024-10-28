@@ -1,5 +1,5 @@
 // Define base path for GitHub Pages compatibility
-const basePath = "";
+const basePath = window.location.pathname.includes("/blog") ? "/blog" : "";
 
 // Load post metadata and render posts list or individual post
 async function loadPosts() {
