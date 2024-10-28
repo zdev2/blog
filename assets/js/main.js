@@ -36,7 +36,11 @@ function filterPostsByTag(posts, tagParam) {
 // Fetch metadata of all posts
 async function fetchAllPostsMetadata() {
   const posts = [];
-  const postFiles = ["hello-world.md", "golang-react-url-shortener.md"]; // Add all your post filenames here
+  const postFiles = [
+    "hello-world.md",
+    "golang-react-url-shortener.md",
+    "test3.md",
+  ]; // Add all your post filenames here
 
   for (const file of postFiles) {
     try {
