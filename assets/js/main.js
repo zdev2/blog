@@ -1,5 +1,5 @@
 // Define base path for GitHub Pages compatibility
-const basePath = "/blog";
+const basePath = "";
 
 // Load post metadata and render posts list or individual post
 async function loadPosts() {
