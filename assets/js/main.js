@@ -1,3 +1,6 @@
+// Define base path for GitHub Pages compatibility
+const basePath = "/blog";
+
 // Load post metadata and render posts list or individual post
 async function loadPosts() {
   const postsContainer = document.getElementById("posts");
@@ -34,7 +37,6 @@ function filterPostsByTag(posts, tagParam) {
 async function fetchAllPostsMetadata() {
   const posts = [];
   const postFiles = ["hello-world.md", "golang-react-url-shortener.md"]; // Add all your post filenames here
-  const basePath = window.location.pathname.includes("/blog") ? "/blog" : "";
 
   for (const file of postFiles) {
     try {
@@ -45,7 +47,7 @@ async function fetchAllPostsMetadata() {
       data.id = file.split(".")[0]; // Generate a simple ID from the filename
       posts.push({ content, data }); // Store both content and metadata
     } catch (error) {
-      console.error("Error fetching post file:", error);
+      console.error(`Error fetching post file '${file}':`, error);
     }
   }
   return posts;
@@ -79,18 +81,17 @@ function displayPostsList(posts, container) {
     const summary = data.summary || "No summary available";
 
     const postElement = `
-              <div class="post">
-                  <h2><a href="post.html?post=${data.id}">${title}</a></h2>
-                  <p>${summary}</p>
-              </div>
-          `;
+      <div class="post">
+        <h2><a href="post.html?post=${data.id}">${title}</a></h2>
+        <p>${summary}</p>
+      </div>
+    `;
     container.innerHTML += postElement;
   });
 }
 
 // Load individual post content
 async function loadPostContent(postId) {
-  const basePath = window.location.pathname.includes("/blog") ? "/blog" : "";
   try {
     const response = await fetch(`${basePath}/posts/${postId}.md`);
     if (!response.ok) throw new Error(`Failed to load post ${postId}`);
@@ -100,12 +101,12 @@ async function loadPostContent(postId) {
 
     // Ensure the metadata is correctly accessed and displayed
     return `
-          <h1>${data.title || "Untitled"}</h1>
-          <p>${data.date || "No date provided"}</p>
-          <div>${md.render(content)}</div>
-      `;
+      <h1>${data.title || "Untitled"}</h1>
+      <p>${data.date || "No date provided"}</p>
+      <div>${md.render(content)}</div>
+    `;
   } catch (error) {
-    console.error("Error loading post content:", error);
+    console.error(`Error loading post content for '${postId}':`, error);
     return `<p>Failed to load post content.</p>`;
   }
 }
