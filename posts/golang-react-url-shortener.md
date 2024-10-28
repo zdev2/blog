@@ -7,4 +7,4 @@ summary: My very first blog post, marking the start of my blogging journey.
 
 Test Number 2
 
-![banana](../assets/img/banana.jpg)
+![banana](https://raw.githubusercontent.com/zdev2/blog/main/assets/img/banana.jpg)
