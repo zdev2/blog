@@ -1,5 +1,5 @@
 // Define base path for GitHub Pages compatibility
-const basePath = window.location.pathname.includes("/blog") ? "/blog" : "";
+const basePath = "https://raw.githubusercontent.com/zdev2/blog/main/";
 
 // Load post metadata and render posts list or individual post
 async function loadPosts() {
@@ -40,9 +40,7 @@ async function fetchAllPostsMetadata() {
 
   for (const file of postFiles) {
     try {
-      const response = await fetch(
-        `https://raw.githubusercontent.com/zdev2/blog/main/posts/${file}`
-      );
+      const response = await fetch(`${basePath}/posts/${file}`);
       if (!response.ok) throw new Error(`Failed to fetch ${file}`);
       const text = await response.text();
       const { content, data } = parseFrontMatter(text); // Use custom front matter parser
