@@ -45,7 +45,7 @@ async function fetchPostFiles() {
 }
 
 function parseFrontMatter(text) {
-  return matter(text); // gray-matter otomatis memproses front matter
+  return window["gray-matter"](text); // Akses gray-matter dari window
 }
 
 function filterPostsByTag(posts, tag) {
