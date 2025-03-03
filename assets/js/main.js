@@ -95,11 +95,11 @@ function displayPostsList(posts, container) {
     const title = data.title || "Untitled";
     const summary = data.summary || "No summary available";
 
-    const postElement = 
+    const postElement = `
       <div class="post">
         <h2><a href="post.html?post=${data.id}">${title}</a></h2>
         <p>${summary}</p>
-      </div>
+      </div>`
     ;
     container.innerHTML += postElement;
   });
