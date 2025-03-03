@@ -44,6 +44,10 @@ async function fetchPostFiles() {
   }
 }
 
+function filterPostsByTag(posts, tag) {
+  return posts.filter(post => post.data.tags && post.data.tags.includes(tag));
+}
+
 // Fetch metadata of all posts
 async function fetchAllPostsMetadata(postFiles) {
   const posts = [];
