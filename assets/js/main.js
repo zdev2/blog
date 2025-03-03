@@ -44,8 +44,12 @@ async function fetchPostFiles() {
   }
 }
 
+function parseFrontMatter(text) {
+  return matter(text); // gray-matter otomatis memproses front matter
+}
+
 function filterPostsByTag(posts, tag) {
-  return posts.filter(post => post.data.tags && post.data.tags.includes(tag));
+  return posts.filter((post) => post.data.tags && post.data.tags.includes(tag));
 }
 
 // Fetch metadata of all posts
