@@ -45,8 +45,13 @@ async function fetchPostFiles() {
 }
 
 function parseFrontMatter(text) {
-  return window["gray-matter"](text); // Akses gray-matter dari window
+  if (typeof window["gray-matter"] !== "function") {
+    console.error("gray-matter is not loaded correctly");
+    return { content: text, data: {} }; // Return default jika gray-matter tidak ada
+  }
+  return window["gray-matter"](text);
 }
+
 
 function filterPostsByTag(posts, tag) {
   return posts.filter((post) => post.data.tags && post.data.tags.includes(tag));
