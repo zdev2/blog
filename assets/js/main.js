@@ -44,17 +44,31 @@ async function fetchPostFiles() {
   }
 }
 
-function parseFrontMatter(text) {
-  if (typeof window["gray-matter"] !== "function") {
-    console.error("gray-matter is not loaded correctly");
-    return { content: text, data: {} }; // Return default jika gray-matter tidak ada
+function parseFrontMatter(markdown) {
+  const match = markdown.match(/---\s*([\s\S]*?)\s*---/); // Capture front matter reliably
+  const metadata = {};
+
+  if (match) {
+    const metaLines = match[1].trim().split("\n");
+    metaLines.forEach((line) => {
+      const [key, ...value] = line.split(":");
+      metadata[key.trim()] = value.join(":").trim();
+    });
+    // Remove the front matter from the content
+    const content = markdown.replace(/---[\s\S]*?---/, "").trim();
+    return { content, data: metadata };
   }
-  return window["gray-matter"](text);
+
+  console.log("No front matter found in file."); // Log if no front matter is found
+  return { content: markdown, data: metadata }; // Return full content if no front matter
 }
 
 
-function filterPostsByTag(posts, tag) {
-  return posts.filter((post) => post.data.tags && post.data.tags.includes(tag));
+function filterPostsByTag(posts, tagParam) {
+  const tags = tagParam.split(",").map((tag) => tag.trim().toLowerCase()); // Split tags and convert to lowercase
+  return posts.filter((post) =>
+    tags.some((tag) => (post.data.tag || "").toLowerCase().includes(tag))
+  );
 }
 
 // Fetch metadata of all posts
@@ -75,6 +89,43 @@ async function fetchAllPostsMetadata(postFiles) {
   return posts;
 }
 
-// Function lainnya tetap sama...
+function displayPostsList(posts, container) {
+  container.innerHTML = "";
+  posts.forEach(({ data }) => {
+    const title = data.title || "Untitled";
+    const summary = data.summary || "No summary available";
+
+    const postElement = 
+      <div class="post">
+        <h2><a href="post.html?post=${data.id}">${title}</a></h2>
+        <p>${summary}</p>
+      </div>
+    ;
+    container.innerHTML += postElement;
+  });
+}
+
+// Load individual post content
+async function loadPostContent(postId) {
+  try {
+    const response = await fetch(`${basePath}/posts/${postId}.md`);
+    if (!response.ok) throw new Error(`Failed to load post ${postId}`);
+    const text = await response.text();
+    const { content, data } = parseFrontMatter(text); // Parse metadata and content
+    const md = window.markdownit();
+
+    // Ensure the metadata is correctly accessed and displayed
+    return `
+      <h1>${data.title || "Untitled"}</h1>
+      <p>${data.date || "No date provided"}</p>
+      <div>${md.render(content)}</div>`
+    ;
+  } catch (error) {
+    console.error(`Error loading post content for ${postId}:`, error);
+    return <p>Failed to load post content.</p>;
+  }
+}
+
+
 
 document.addEventListener("DOMContentLoaded", loadPosts);
